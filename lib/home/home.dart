@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user_login/shared/loading.dart';
 
@@ -48,33 +48,43 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Home"),
-        actions: [
-          FlatButton.icon(icon: Icon(Icons.person, color: Colors.white,), onPressed: () async{
-            SharedPreferences sharedpref = await SharedPreferences.getInstance();
-            setState(() {
-              sharedpref.setBool("loggedIn", false);
-              widget.getLoggedInStatus();
-            });
-          },
-          label: Text("Logout",style: TextStyle(color: Colors.white),),),
+    return _isLoading
+        ? Loading()
+        : Scaffold(
+            appBar: AppBar(
+              title: Text("Home"),
+              actions: [
+                FlatButton.icon(
+                  icon: Icon(
+                    Icons.person,
+                    color: Colors.white,
+                  ),
+                  onPressed: () async {
+                    SharedPreferences sharedpref =
+                        await SharedPreferences.getInstance();
+                    setState(() {
+                      sharedpref.setBool("loggedIn", false);
+                      widget.getLoggedInStatus();
+                    });
+                  },
+                  label: Text("Logout",style: TextStyle(color: Colors.white),),),
         ],
       ),
       body: Container(
         // padding: EdgeInsets.symmetric(horizontal: 10.0),
-        child: _isLoading ? Loading() : ListView.builder(
-            itemCount: finalUserList['data'].length,
+        child: ListView.builder(
+          itemCount: finalUserList['data'].length,
           physics: ScrollPhysics(),
-          itemBuilder: (context,index){
-              return ListTile(
-                
-                title: Text("${finalUserList['data'][index]['first_name']} ${finalUserList['data'][index]['last_name']}"),
-                subtitle: Text(finalUserList['data'][index]['email']),
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(finalUserList['data'][index]['avatar']),
-                ),
+          itemBuilder: (context, index) {
+            return ListTile(
+
+              title: Text(
+                  "${finalUserList['data'][index]['first_name']} ${finalUserList['data'][index]['last_name']}"),
+              subtitle: Text(finalUserList['data'][index]['email']),
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage(
+                    finalUserList['data'][index]['avatar']),
+              ),
               );
           },
         ),
