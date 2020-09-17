@@ -52,6 +52,11 @@ class _LogInState extends State<LogIn> {
                 title: Text("Not Registered"),
                 titlePadding: EdgeInsets.all(10.0),
                 content: Text("Try Again!"),
+                actions: [
+                  FlatButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text("OK"))
+                ],
                 elevation: 20.0,
               );
             },
@@ -69,6 +74,10 @@ class _LogInState extends State<LogIn> {
               titlePadding: EdgeInsets.all(10.0),
               content: Text("Try Again!"),
               elevation: 20.0,
+              actions: [
+                FlatButton(
+                    onPressed: () => Navigator.pop(context), child: Text("OK"))
+              ],
             );
           },
           barrierDismissible: true);

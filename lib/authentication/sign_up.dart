@@ -47,6 +47,9 @@ class _SignUpState extends State<SignUp> {  Alignment childAlignment = Alignment
                 titlePadding: EdgeInsets.all(10.0),
                 content: Text("Log in to continue"),
                 elevation: 20.0,
+                actions: [
+                  FlatButton(onPressed:()=> Navigator.pop(context), child: Text("OK"))
+                ],
               );
             },
             barrierDismissible: true);
@@ -70,6 +73,9 @@ class _SignUpState extends State<SignUp> {  Alignment childAlignment = Alignment
               titlePadding: EdgeInsets.all(10.0),
               content: Text("Try Again!"),
               elevation: 20.0,
+              actions: [
+                  FlatButton(onPressed:()=> Navigator.pop(context), child: Text("OK"))
+                ],
             );
           },
           barrierDismissible: true);
