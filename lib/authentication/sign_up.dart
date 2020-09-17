@@ -17,7 +17,8 @@ class SignUp extends StatefulWidget {
   _SignUpState createState() => _SignUpState();
 }
 
-class _SignUpState extends State<SignUp> {  Alignment childAlignment = Alignment.center;
+class _SignUpState extends State<SignUp> {
+  Alignment childAlignment = Alignment.center;
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -35,7 +36,7 @@ class _SignUpState extends State<SignUp> {  Alignment childAlignment = Alignment
     if (response.statusCode == 200) {
       jsonData = json.decode(response.body);
       final usersBox = Hive.box('users');
-      if (usersBox.get(jsonData['token'])!=null){
+      if (usersBox.get(jsonData['token']) != null) {
         setState(() {
           _isLoading = false;
         });
@@ -48,13 +49,14 @@ class _SignUpState extends State<SignUp> {  Alignment childAlignment = Alignment
                 content: Text("Log in to continue"),
                 elevation: 20.0,
                 actions: [
-                  FlatButton(onPressed:()=> Navigator.pop(context), child: Text("OK"))
+                  FlatButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text("OK"))
                 ],
               );
             },
             barrierDismissible: true);
-      }
-      else{
+      } else {
         usersBox.put(jsonData['token'], jsonData['id']);
         setState(() {
           sharedPreferences.setBool("loggedIn", true);
@@ -74,8 +76,9 @@ class _SignUpState extends State<SignUp> {  Alignment childAlignment = Alignment
               content: Text("Try Again!"),
               elevation: 20.0,
               actions: [
-                  FlatButton(onPressed:()=> Navigator.pop(context), child: Text("OK"))
-                ],
+                FlatButton(
+                    onPressed: () => Navigator.pop(context), child: Text("OK"))
+              ],
             );
           },
           barrierDismissible: true);
@@ -95,8 +98,8 @@ class _SignUpState extends State<SignUp> {  Alignment childAlignment = Alignment
     KeyboardVisibilityNotification().addNewListener(
       onChange: (bool visible) {
         setState(() {
-        childAlignment = visible ? Alignment.topCenter : Alignment.center;
-      });
+          childAlignment = visible ? Alignment.topCenter : Alignment.center;
+        });
       },
     );
     // ignore: todo
@@ -125,13 +128,13 @@ class _SignUpState extends State<SignUp> {  Alignment childAlignment = Alignment
               ),
               body: AnimatedContainer(
                 curve: Curves.easeOut,
-                  duration: Duration(milliseconds: 400),
-                  width: double.infinity,
-                  height: double.infinity,
-                  padding: const EdgeInsets.all(20),
-                  alignment: childAlignment,
+                duration: Duration(milliseconds: 400),
+                width: double.infinity,
+                height: double.infinity,
+                padding: const EdgeInsets.all(20),
+                alignment: childAlignment,
                 child: SingleChildScrollView(
-                                  child: Form(
+                  child: Form(
                     key: formKey,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -144,7 +147,9 @@ class _SignUpState extends State<SignUp> {  Alignment childAlignment = Alignment
                           style: TextStyle(color: Colors.black, fontSize: 18.0),
                           controller: emailController,
                           validator: emailValidator,
-                          decoration: textInputDecoration.copyWith(hintText: "Email"),),
+                          decoration:
+                              textInputDecoration.copyWith(hintText: "Email"),
+                        ),
                         SizedBox(
                           height: 10.0,
                         ),
@@ -159,7 +164,8 @@ class _SignUpState extends State<SignUp> {  Alignment childAlignment = Alignment
                             }
                           },
                           obscureText: true,
-                          decoration: textInputDecoration.copyWith(hintText: "Password"),
+                          decoration: textInputDecoration.copyWith(
+                              hintText: "Password"),
                         ),
                         SizedBox(
                           height: 10.0,

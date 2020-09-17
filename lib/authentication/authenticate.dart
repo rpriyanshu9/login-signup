@@ -25,20 +25,23 @@ class _AuthenticateState extends State<Authenticate> {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: Hive.openBox('users'),
-          builder: (context,snapshot){
-            if (snapshot.connectionState==ConnectionState.done){
-              if (snapshot.hasError){
-                return Text(snapshot.error.toString());
-              } else {
-                return showSignIn
-          ? LogIn(toggleView: toggleView, getLoggedInStatus: widget.getLoggedInStatus)
-          : SignUp(
-              toggleView: toggleView, getLoggedInStatus: widget.getLoggedInStatus);
-              }
-            } else {
-              return Scaffold();
-            }
-          },
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          if (snapshot.hasError) {
+            return Text(snapshot.error.toString());
+          } else {
+            return showSignIn
+                ? LogIn(
+                    toggleView: toggleView,
+                    getLoggedInStatus: widget.getLoggedInStatus)
+                : SignUp(
+                    toggleView: toggleView,
+                    getLoggedInStatus: widget.getLoggedInStatus);
+          }
+        } else {
+          return Scaffold();
+        }
+      },
     );
   }
 

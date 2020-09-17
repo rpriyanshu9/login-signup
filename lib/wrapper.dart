@@ -28,6 +28,8 @@ class _WrapperState extends State<Wrapper> {
 
   @override
   Widget build(BuildContext context) {
-    return isLoggedIn ? Home(getLoggedInStatus: getLoggedInStatus) : Authenticate(getLoggedInStatus: getLoggedInStatus);
+    return isLoggedIn
+        ? Home(getLoggedInStatus: getLoggedInStatus)
+        : Authenticate(getLoggedInStatus: getLoggedInStatus);
   }
 }
