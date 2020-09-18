@@ -86,8 +86,7 @@ class _LogInState extends State<LogIn> {
 
   @override
   void initState() {
-    // ignore: todo
-    // TODO: implement initState
+    super.initState();
     KeyboardVisibilityNotification().addNewListener(
       onChange: (bool visible) {
         setState(() {
@@ -103,7 +102,6 @@ class _LogInState extends State<LogIn> {
     passwordController.addListener(() {
       setState(() {});
     });
-    super.initState();
   }
 
   @override

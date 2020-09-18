@@ -95,6 +95,7 @@ class _SignUpState extends State<SignUp> {
 
   @override
   void initState() {
+    super.initState();
     KeyboardVisibilityNotification().addNewListener(
       onChange: (bool visible) {
         setState(() {
@@ -102,9 +103,6 @@ class _SignUpState extends State<SignUp> {
         });
       },
     );
-    // ignore: todo
-    // TODO: implement initState
-    super.initState();
     emailController = TextEditingController();
     passwordController = TextEditingController();
     emailController.addListener(() {

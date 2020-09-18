@@ -40,10 +40,8 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    // ignore: todo
-    // TODO: implement initState
-    getUserList();
     super.initState();
+    getUserList();
   }
 
   @override
